@@ -66,3 +66,29 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `yarn build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+主文件 src/index.js
+主体div文件 src/app.js
+
+
+jsx注意点
+class = className
+列联style样式要写成 style={{'border':'1px ...'}}
+变量或者函数需要用 {} 包裹
+jsx主体需要用div进行包裹
+
+<Fragment></Fragment> 标签，当布局不需要最外层的div标签时，可以使用Fragment标签
+
+
+
+组件主体
+class * extends Component {
+    render  (
+
+    )
+}
+export default *
+
+
+class constructor构造函数接收props 并用super进行继承
