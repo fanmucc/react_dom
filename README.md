@@ -92,3 +92,17 @@ export default *
 
 
 class constructor构造函数接收props 并用super进行继承
+
+
+
+react鼠标点击事件
+onClick 鼠标点击
+onDoubleClick 鼠标双击
+
+
+react 其他
+dangerouslySetInnerHTML={{__html: state.值}}  渲染标签模板
+
+有时标签属性的使用会和react中的关键字混淆，所以需要添加相应的东西进行区别
+<label htmlfor="id">
+<input id="id">   
