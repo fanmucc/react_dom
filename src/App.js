@@ -3,6 +3,7 @@ import ItemList from './item'
 import './app.css'
 // 引入store
 import store from './store'
+import {CLICK_NUM, CLICK_LIST, DELETE_ITEM} from './store/actionTypes'
 import { Button, Input } from 'antd';
 class App extends Component {
     // 组件初始化
@@ -101,7 +102,7 @@ class App extends Component {
         //     list: [...this.state.list, this.state.value]
         // })
         const action = {
-            type: 'click_list',
+            type: CLICK_LIST,
             value: this.state.value
         }
         store.dispatch(action)
@@ -113,7 +114,7 @@ class App extends Component {
         //     list: this.state.list
         // })
         const action = {
-            type: 'delete_item',
+            type: DELETE_ITEM,
             value: index
         }
         store.dispatch(action)
@@ -123,7 +124,7 @@ class App extends Component {
         //     num: this.state.num + 1
         // })
         const action = {
-            type: 'click_num',
+            type: CLICK_NUM,
             value: this.state.num + 1
         }
         store.dispatch(action)
