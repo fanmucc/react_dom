@@ -16,7 +16,7 @@ class ItemList extends Component {
                     dataSource={this.props.content}
                     bordered="true"
                     renderItem={(item, index) => (
-                        <List.Item onClick={this.handleItemClick.bind(this, index)}>
+                        <List.Item onDoubleClick={this.handleItemClick.bind(this, index)}>
                             <List.Item.Meta
                                 description={item}
                             ></List.Item.Meta>

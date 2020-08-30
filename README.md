@@ -106,3 +106,18 @@ dangerouslySetInnerHTML={{__html: state.值}}  渲染标签模板
 有时标签属性的使用会和react中的关键字混淆，所以需要添加相应的东西进行区别
 <label htmlfor="id">
 <input id="id">   
+
+
+// 面试学习
+问题
+promise 问题  多个请求时，返回响应的成功集合和失败集
+await/async
+async funciton () {
+    let a = await 1     // 或有什么影响      没有影响
+}
+
+vue 数据响应式问题
+虚拟DOM  DOM Diff 的过程
+
+
+react不可变数据 

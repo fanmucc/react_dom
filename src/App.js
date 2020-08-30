@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import ItemList from './item'
-import './App.css'
-
+import './app.css'
+// 引入store
+import store from './store'
 import { Button, Input } from 'antd';
 class App extends Component {
     // 组件初始化
@@ -9,13 +10,19 @@ class App extends Component {
         super(props)
         this.state = {
             value: '123',
-            list: [],
+            list: store.getState().list,
             dom: '<h1>标签</h1>',
-            num: 0
+            num: store.getState().num
         }
+        // 获取store中的state数据
+        console.log(store.getState())
         this.handleChange = this.handleChange.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.handleClickAdd = this.handleClickAdd.bind(this)
+
+        // store改变事件
+        this.storeChange = this.storeChange.bind(this)
+        store.subscribe(this.storeChange)   // 开启监听store的state改变监听
         console.log(1 + 'constructor')
     }
     // 生命周期
@@ -65,7 +72,8 @@ class App extends Component {
                     <Button type="primary" onClick={this.handleClickAdd}>增加</Button>
                     {this.state.num}
                     <div style={{'display': 'flex'}}>
-                        <Input placeholder="需要什么服务" value={this.state.value} onChange={this.handleChange} ref={(input) => {this.input = input}}/> 
+                        {/* <Input placeholder="需要什么服务" value={this.state.value} onChange={this.handleChange} ref={(input) => {this.input = input}}/>  */}
+                        <Input placeholder="需要什么服务" value={this.state.value} onChange={this.handleChange}/> 
                         <Button type="primary" style={{'marginLeft':'10px'}} onClick={this.handleClick}>增加服务</Button>
                     </div>
                     <ItemList content={this.state.list} deleteItem={this.deleteItem.bind(this)}/>
@@ -82,27 +90,49 @@ class App extends Component {
          );
     }
     handleChange (e) {
-        console.log(e.target.value)
+        // console.log(this.input.value)
         this.setState({
-            // value: e.target.value
-            value: this.input.value
+            value: e.target.value
+            // value: this.input.value
         })
     }
     handleClick () {
-        this.setState({
-            list: [...this.state.list, this.state.value]
-        })
+        // this.setState({
+        //     list: [...this.state.list, this.state.value]
+        // })
+        const action = {
+            type: 'click_list',
+            value: this.state.value
+        }
+        store.dispatch(action)
     }
     deleteItem (index) {
         console.log(index)
-        this.state.list.splice(index, 1)
-        this.setState({
-            list: this.state.list
-        })
+        // this.state.list.splice(index, 1)
+        // this.setState({
+        //     list: this.state.list
+        // })
+        const action = {
+            type: 'delete_item',
+            value: index
+        }
+        store.dispatch(action)
     }
     handleClickAdd () {
+        // this.setState({
+        //     num: this.state.num + 1
+        // })
+        const action = {
+            type: 'click_num',
+            value: this.state.num + 1
+        }
+        store.dispatch(action)
+    }
+    // store改变事件
+    storeChange () {
         this.setState({
-            num: this.state.num + 1
+            num: store.getState().num,
+            list: store.getState().list
         })
     }
 }
